@@ -1,0 +1,16 @@
+name: 🪂 Continuous Deployment
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  release:
+    types: [published, edited, prereleased]
+
+jobs:
+  build:
+    name: 🔨Build and deploy
+    uses: ./.github/workflows/build.yml
