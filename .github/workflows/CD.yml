@@ -13,4 +13,4 @@ on:
 jobs:
   build:
     name: 🔨Build and deploy
-    uses: ./.github/workflows/build.yml
+    uses: WGBH-MLA/.github./workflow-templates/build.yml@main
