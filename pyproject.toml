@@ -1,22 +1,20 @@
-[tool.poetry]
+[tool.pdm]
+[tool.pdm.dev-dependencies]
+dev = [
+    "uvicorn>=0.21.0",
+]
+
+[project]
 name = "FastCLAM"
 version = "0.0.1"
-description = "FastAPI for CLAMS Applications"
-authors = ["WGBH-MLA"]
-readme = "README.md"
-packages = [{include = "fastclam"}]
-
-[tool.poetry.dependencies]
-python = "^3.8"
-clams-python = "^0.5.2"
-mmif-python = "^0.4.6"
-pydantic = "^1.8.2"
-fastapi = "^0.92.0"
-
-
-[tool.poetry.group.test.dependencies]
-uvicorn = "^0.20.0"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+description = "FastAPI for CLAMS"
+authors = [
+    {name = "WGBH-MLA", email = "ryan_harbert@wgbh.org"},
+]
+dependencies = [
+    "fastapi>=0.94.0",
+    "pydantic>=1.10.6",
+    "clams-python>=0.5.2",
+]
+requires-python = ">=3.10"
+license = {text = "MIT"}
