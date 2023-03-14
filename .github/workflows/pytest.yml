@@ -26,6 +26,9 @@ jobs:
         with:
           python-version: ${{ inputs.python_version }}
 
+      - name: 📓 Setup poetry
+        uses: abatilo/actions-poetry@v2
+
       - name: 🏗️ Setup testing environment
         run: poetry install
 
