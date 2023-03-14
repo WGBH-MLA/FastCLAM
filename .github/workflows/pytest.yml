@@ -6,6 +6,8 @@ on:
       python_version:
         description: The version of python to setup
         default: 3.11
+        type: string
+
       pytest_args:
         description: Additional args to pass to pytest.
         type: string
