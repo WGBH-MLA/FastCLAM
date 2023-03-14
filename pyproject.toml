@@ -9,13 +9,15 @@ packages = [{include = "fastclam"}]
 [tool.poetry.dependencies]
 python = "^3.8"
 clams-python = "^0.5.2"
-mmif-python = "^0.4.6"
+mmif-python = "^0.4.2"
 pydantic = "^1.8.2"
-fastapi = "^0.92.0"
+fastapi = "^0.94.0"
+loguru = "^0.6.0"
+rich = "^13.3.2"
 
 
 [tool.poetry.group.test.dependencies]
-uvicorn = "^0.20.0"
+uvicorn = "^0.21.0"
 
 [build-system]
 requires = ["poetry-core"]
