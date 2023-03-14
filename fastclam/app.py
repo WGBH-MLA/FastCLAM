@@ -4,9 +4,9 @@ from json import loads
 from pydantic import BaseModel
 from typing import List
 import requests
-from os import path, environ
-from datetime import datetime
+from .log import log
 from .version import __VERSION__
+from xml.etree import ElementTree
 
 
 class Inputs(BaseModel):
@@ -28,23 +28,33 @@ def home() -> dict:
 
 @app.post('/source')
 def generate_source(files: Inputs) -> dict:
-    """Generate a new source MMIF"""
+    """Generate a new source MMIF from multiple input files"""
+    log.info(f'sourcing media {files.files}')
     mmif = generate_source_mmif(files.files)
     json_value = loads(str(mmif))
+    log.debug(f'sourced: {json_value}')
     return json_value
 
 
 @app.post('/pipeline')
-def run_pipeline(pipeline: Pipeline) -> list:
+def run_pipeline(pipeline: Pipeline, all: bool = False) -> list:
+    """Run a list of media through a list of apps"""
     results = []
+    log.info(f'Starting pipeline {pipeline}')
     for media in pipeline.files:
         mmif = generate_source(Inputs(files=[media]))
-        results.append(mmif)
-        print('have source', mmif)
+
         for app in pipeline.apps:
+            log.debug(f'Running {media} through {app}')
             response = requests.post(app, json=mmif)
             assert response.status_code == 200, f'Error with {pipeline}: {response}'
-            mmif = response.json()
+            try:
+                mmif = response.json()
+            except Exception as e:
+                log.warn(f'Error parsing json {e}')
+                log.debug('Trying to parse as xml')
+                mmif = ElementTree.fromstring(response.content)
             results.append(mmif)
-    print('results: ', results)
+
+    log.info(f'Ran {len(pipeline.files)} files through {len(pipeline.apps)} apps')
     return results
