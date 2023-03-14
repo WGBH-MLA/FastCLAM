@@ -8,6 +8,7 @@ on:
         default: 3.11
       pytest_args:
         description: Additional args to pass to pytest.
+        type: string
 
 jobs:
   run_pytest:
