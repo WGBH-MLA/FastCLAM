@@ -1,0 +1,10 @@
+name: 🧪 Continuous Integration
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    name: ⚗️ Run application tests
+    uses: ./.github/workflows/pytest.yml

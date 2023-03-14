@@ -1,0 +1,30 @@
+name: 🐍 pytest
+
+on:
+  workflow_call:
+    inputs:
+      python_version:
+        description: The version of python to setup
+        default: 3.11
+      pytest_args:
+        description: Additional args to pass to pytest.
+
+jobs:
+  run_pytest:
+    name: 🐍 pytest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📰 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python_version }}
+
+      - name: 🏗️ Setup testing environment
+        run: poetry install
+
+      - name: 🧪 Run pytest suite
+        run: poetry run pytest -v ${{ inputs.pytest_args }}
