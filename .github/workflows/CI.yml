@@ -1,8 +1,6 @@
-name: 🧪 Continuous Integration
+name: 🧪 Integration Tests
 
-on:
-  push:
-  pull_request:
+on: [push, pull_request]
 
 jobs:
   tests:
