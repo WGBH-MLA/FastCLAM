@@ -26,8 +26,12 @@ jobs:
         with:
           python-version: ${{ inputs.python_version }}
 
-      - name: 📓 Setup poetry
-        run: pipx install poetry
+      - name: 📓 Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
 
       - name: 💸 Load cached venv
         id: cached-poetry-dependencies
