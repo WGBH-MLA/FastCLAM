@@ -16,6 +16,7 @@ jobs:
   run_pytest:
     name: 🐍 pytest
     runs-on: ubuntu-latest
+    environment: Codecov
 
     steps:
       - name: 📰 Checkout
@@ -50,3 +51,4 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          verbose: true
