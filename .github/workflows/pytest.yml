@@ -44,7 +44,7 @@ jobs:
         run: poetry install --no-interaction
 
       - name: 🧪 Run pytest suite
-        run: poetry run pytest -v --cov ${{ inputs.pytest_args }}
+        run: poetry run pytest -v --cov --cov-report lcov ${{ inputs.pytest_args }}
 
       - name: 📈 Uploade coverage report
         uses: codecov/codecov-action@v3
