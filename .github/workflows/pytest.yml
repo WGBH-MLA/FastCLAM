@@ -1,0 +1,47 @@
+name: 🐍 pytest
+
+on:
+  workflow_call:
+    inputs:
+      python_version:
+        description: The version of python to setup
+        default: 3.11
+        type: string
+
+      pytest_args:
+        description: Additional args to pass to pytest.
+        type: string
+
+jobs:
+  run_pytest:
+    name: 🐍 pytest
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📰 Checkout
+        uses: actions/checkout@v3
+
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python_version }}
+
+      - name: 📓 Setup poetry
+        run: pipx install poetry
+
+      - name: 💸 Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: 🏋 Download dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+
+      - name: 🏗️ Install dependencies
+        run: poetry install --no-interaction
+
+      - name: 🧪 Run pytest suite
+        run: poetry run pytest -v ${{ inputs.pytest_args }}
