@@ -1,4 +1,4 @@
-name: 👖 Lint
+name: 🖤 Black
 
 on:
   workflow_call:
@@ -9,8 +9,8 @@ on:
         type: string
 
 jobs:
-  lint:
-    name: 👕 Linter
+  black:
+    name: ⬛ Black Formatter
     runs-on: ubuntu-latest
 
     steps:
@@ -23,8 +23,8 @@ jobs:
         with:
           python-version: ${{ inputs.python_version }}
 
-      - name: 🌨️ Install flake8
-        run: pip install flake8
+      - name: 🏴 Install black
+        run: pip install black
 
-      - name: 👔 Run Linter
-        run: flake8 -v
+      - name: 🎱 Run Black
+        run: black -vS --check --diff --color .

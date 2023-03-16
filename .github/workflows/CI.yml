@@ -10,3 +10,7 @@ jobs:
   lint:
     name: 👕 Lint
     uses: ./.github/workflows/lint.yml
+
+  black:
+    name: 🖤 Black
+    uses: ./.github/workflows/black.yml
