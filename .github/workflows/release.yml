@@ -7,7 +7,4 @@ on:
 jobs:
   release:
     name: 📝 Draft Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: 📦 Create draft release from milestone
-        uses: WGBH-MLA/.github/.github/workflows/draft_release.yml@main
+    uses: WGBH-MLA/.github/.github/workflows/draft_release.yml@main
