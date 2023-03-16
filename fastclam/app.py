@@ -20,15 +20,18 @@ class Inputs(BaseModel):
 class Pipeline(Inputs):
     apps: List[str]
 
+
 class MMIFException(HTTPException):
     pass
 
 
 app = FastAPI()
 
+
 @app.exception_handler(StarletteHTTPException)
 async def http_exception_handler(request, exc):
     return PlainTextResponse(str(exc.detail), status_code=exc.status_code)
+
 
 @app.get('/')
 def home() -> dict:
@@ -61,7 +64,10 @@ def run_pipeline(pipeline: Pipeline) -> list | dict | str:
             if response.status_code != 200:
                 log.error(f'Bad response from {app} with {media}')
                 log.debug(response.content)
-                raise HTTPException(status_code=response.status_code, detail=f'Unsuccessful response from {app}: {response.status_code} - {response.content}')
+                raise HTTPException(
+                    status_code=response.status_code,
+                    detail=f'Unsuccessful response from {app}: {response.status_code} - {response.content}',
+                )
             content_type = response.headers.get('Content-Type')
             if 'application/json' in content_type:
                 try:
@@ -78,7 +84,10 @@ def run_pipeline(pipeline: Pipeline) -> list | dict | str:
                 except ParseError as e:
                     log.error(f'Error parsing XML: {e}')
                     log.debug(response.content)
-                    raise MMIFException(status_code=499, detail=f'Failed to parse XML from {app}: {response.status_code} - {response.content}')
+                    raise MMIFException(
+                        status_code=499,
+                        detail=f'Failed to parse XML from {app}: {response.status_code} - {response.content}',
+                    )
 
     log.info(f'Ran {len(pipeline.files)} files through {len(pipeline.apps)} apps')
 
