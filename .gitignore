@@ -1,3 +1,7 @@
+# Coverage files
 htmlcov
 .coverage
 coverage.lcov
+
+# Docs
+site
