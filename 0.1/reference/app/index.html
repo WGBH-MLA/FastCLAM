@@ -390,13 +390,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#fastclam.app--fastclamapp" class="md-nav__link">
-    FastCLAM.app
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#fastclam.app.generate_source" class="md-nav__link">
     generate_source()
   </a>
@@ -469,17 +462,7 @@
 
 <a id="fastclam.app"></a>
   <div class="doc doc-contents first">
-  
-      <h2 id="fastclam.app--fastclamapp">FastCLAM.app</h2>
 
-<details class="example">
-  <summary>Example</summary>
-  <p><code>$ uvicorn fastclam.app</code></p>
-</details>
-<details class="todo">
-  <summary>Todo</summary>
-  <p>Stuff</p>
-</details>
   
 
   <div class="doc doc-children">
@@ -508,14 +491,14 @@
 
       <details class="quote">
         <summary>Source code in <code>fastclam/app.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/source&#39;</span><span class="p">)</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/source&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">generate_source</span><span class="p">(</span><span class="n">files</span><span class="p">:</span> <span class="n">Inputs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a new source MMIF from multiple input files&quot;&quot;&quot;</span>
     <span class="n">log</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;sourcing media </span><span class="si">{</span><span class="n">files</span><span class="o">.</span><span class="n">files</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -545,10 +528,10 @@
 
       <details class="quote">
         <summary>Source code in <code>fastclam/app.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">home</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return version info&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;FastCLAM&#39;</span><span class="p">:</span> <span class="n">__VERSION__</span><span class="p">}</span>
@@ -574,7 +557,17 @@
 
       <details class="quote">
         <summary>Source code in <code>fastclam/app.py</code></summary>
-        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">40</span>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
 <span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
@@ -585,17 +578,7 @@
 <span class="normal">48</span>
 <span class="normal">49</span>
 <span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/pipeline&#39;</span><span class="p">)</span>
+<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/pipeline&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">run_pipeline</span><span class="p">(</span><span class="n">pipeline</span><span class="p">:</span> <span class="n">Pipeline</span><span class="p">,</span> <span class="nb">all</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Run a list of media through a list of apps&quot;&quot;&quot;</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>

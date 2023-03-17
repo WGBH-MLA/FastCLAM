@@ -569,7 +569,7 @@
 
   
       <p>Pipeline</p>
-<p>A simple pieline validator</p>
+<p>A simple pieline validator, based on Inputs</p>
 
   <p><strong>Attributes:</strong></p>
   <table>
@@ -584,9 +584,9 @@
         <tr>
           <td><code>apps</code></td>
           <td>
-                <code><span title="typing.List">List</span>[str]</code>
+                <code><span title="typing.List">List</span>[<span title="pydantic.AnyHttpUrl">AnyHttpUrl</span>]</code>
           </td>
-          <td><p>A List of apps to run, where each</p></td>
+          <td><p>A List of apps to run, where each appp is a url string for the service</p></td>
         </tr>
     </tbody>
   </table>
@@ -606,13 +606,13 @@
 <span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Pipeline</span><span class="p">(</span><span class="n">Inputs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Pipeline</span>
 
-<span class="sd">    A simple pieline validator</span>
+<span class="sd">    A simple pieline validator, based on Inputs</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        apps: A List of apps to run, where each</span>
+<span class="sd">        apps: A List of apps to run, where each appp is a url string for the service</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">apps</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="n">apps</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">AnyHttpUrl</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
