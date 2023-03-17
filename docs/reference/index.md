@@ -1,3 +1,3 @@
 # Reference
 
-::: fastclam.app
+::: fastclam

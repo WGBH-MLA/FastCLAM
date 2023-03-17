@@ -1,20 +1,21 @@
+"""# FastCLAM.app
+
+Example:
+    `$ uvicorn fastclam.app`
+
+Todo:
+    Stuff
+
+"""
+
 from fastapi import FastAPI
 from clams.source import generate_source_mmif
 from json import loads
-from pydantic import BaseModel
-from typing import List
 import requests
 from .log import log
+from .models import Inputs, Pipeline
 from .version import __VERSION__
 from xml.etree import ElementTree
-
-
-class Inputs(BaseModel):
-    files: List[str]
-
-
-class Pipeline(Inputs):
-    apps: List[str]
 
 
 app = FastAPI()
@@ -22,7 +23,7 @@ app = FastAPI()
 
 @app.get('/')
 def home() -> dict:
-    """version info"""
+    """Return version info"""
     return {'FastCLAM': __VERSION__}
 
 
