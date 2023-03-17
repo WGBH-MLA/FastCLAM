@@ -3,7 +3,7 @@
 Pipeline validation models
 """
 
-from pydantic import BaseModel
+from pydantic import BaseModel, AnyHttpUrl
 from typing import List
 
 
@@ -22,10 +22,10 @@ class Inputs(BaseModel):
 class Pipeline(Inputs):
     """Pipeline
 
-    A simple pieline validator
+    A simple pieline validator, based on Inputs
 
     Attributes:
-        apps: A List of apps to run, where each
+        apps: A List of apps to run, where each appp is a url string for the service
     """
 
-    apps: List[str]
+    apps: List[AnyHttpUrl]

@@ -1,13 +1,3 @@
-"""# FastCLAM.app
-
-Example:
-    `$ uvicorn fastclam.app`
-
-Todo:
-    Stuff
-
-"""
-
 from fastapi import FastAPI
 from clams.source import generate_source_mmif
 from json import loads
@@ -18,7 +8,7 @@ from .version import __VERSION__
 from xml.etree import ElementTree
 
 
-app = FastAPI()
+app = FastAPI(title='FastCLAM')
 
 
 @app.get('/')
