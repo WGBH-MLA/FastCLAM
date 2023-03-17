@@ -49,6 +49,8 @@ jobs:
         run: poetry run pytest -v --cov --cov-report lcov ${{ inputs.pytest_args }}
 
       - name: 📈 Uploade coverage report
+        # run this step, even if the tests fail
+        if: success() || failure()
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
