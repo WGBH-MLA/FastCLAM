@@ -9,10 +9,8 @@
       "type": "python",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "module": "poetry",
+      "module": "uvicorn",
       "args": [
-        "run",
-        "uvicorn",
         "fastclam.app:app",
         "--reload",
         "--host",
