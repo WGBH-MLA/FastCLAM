@@ -9,10 +9,7 @@ from .models import Inputs, Pipeline
 from .version import __VERSION__
 from xml.etree import ElementTree
 from xml.etree.ElementTree import ParseError
-from json import loads
 from json.decoder import JSONDecodeError
-
-
 
 
 class MMIFException(HTTPException):
