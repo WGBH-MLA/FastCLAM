@@ -2,23 +2,14 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import PlainTextResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from clams.source import generate_source_mmif
-from pydantic import BaseModel
-from typing import List
+from json import loads
 import requests
 from .log import log
+from .models import Inputs, Pipeline
 from .version import __VERSION__
 from xml.etree import ElementTree
 from xml.etree.ElementTree import ParseError
-from json import loads
 from json.decoder import JSONDecodeError
-
-
-class Inputs(BaseModel):
-    files: List[str]
-
-
-class Pipeline(Inputs):
-    apps: List[str]
 
 
 class MMIFException(HTTPException):
@@ -26,6 +17,7 @@ class MMIFException(HTTPException):
 
 
 app = FastAPI()
+app = FastAPI(title='FastCLAM')
 
 
 @app.exception_handler(StarletteHTTPException)
@@ -35,7 +27,7 @@ async def http_exception_handler(request, exc):
 
 @app.get('/')
 def home() -> dict:
-    """version info"""
+    """Return version info"""
     return {'FastCLAM': __VERSION__}
 
 
