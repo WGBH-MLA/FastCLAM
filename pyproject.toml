@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "fastclam"}]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.8.1"
 clams-python = "^0.5.2"
 mmif-python = "^0.4.2"
 pydantic = "^1.8.2"
@@ -26,6 +26,8 @@ optional = true
 pytest = "^7.2.2"
 httpx = "^0.23.3"
 pytest-cov = "^4.0.0"
+black = "^23.1.0"
+flake8 = "^6.0.0"
 
 [tool.poetry.group.docs]
 optional = true
