@@ -1,22 +1,23 @@
+from json import loads
+from json.decoder import JSONDecodeError
+from xml.etree import ElementTree
+from xml.etree.ElementTree import ParseError
+
+import requests
+from clams.source import generate_source_mmif
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import PlainTextResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
-from clams.source import generate_source_mmif
-from json import loads
-import requests
+
 from .log import log
 from .models import Inputs, Pipeline
 from .version import __VERSION__
-from xml.etree import ElementTree
-from xml.etree.ElementTree import ParseError
-from json.decoder import JSONDecodeError
 
 
 class MMIFException(HTTPException):
     pass
 
 
-app = FastAPI()
 app = FastAPI(title='FastCLAM')
 
 
@@ -39,6 +40,23 @@ def generate_source(files: Inputs) -> dict:
     json_value = loads(str(mmif))
     log.debug(f'sourced: {json_value}')
     return json_value
+
+
+@app.post('/run')
+def run_app(url: str, mmif: dict) -> dict:
+    """Run a single app with a single MMIF"""
+    log.info(f'Running {url}')
+    response = requests.post('http://' + url, json=mmif)
+    log.debug(f'received response {response.status_code}, {response.headers}')
+    if response.status_code != 200:
+        log.debug(response.content)
+        raise HTTPException(
+            status_code=response.status_code,
+            detail=response.content,
+        )
+    results = response.json()
+    log.success(f'{url} Success!')
+    return results
 
 
 @app.post('/pipeline')
