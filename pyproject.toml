@@ -1,45 +1,38 @@
-[tool.poetry]
+[project]
 name = "FastCLAM"
-version = "0.0.1"
-description = "FastAPI for CLAMS Applications"
-authors = ["WGBH-MLA"]
+dynamic = ['version']
+description = "FastAPI for CLAMS utilities"
+authors = [{ name = "WGBH-MLA", email = "ryan_harbert@wgbh.org" }]
+dependencies = [
+    "clams-python~=1.0",
+    "mmif-python~=1.0",
+    "pydantic~=1.10",
+    "fastapi~=0.100",
+    "loguru~=0.7",
+    "rich~=13.5",
+]
+requires-python = ">=3.11"
 readme = "README.md"
-packages = [{include = "fastclam"}]
-
-[tool.poetry.dependencies]
-python = "^3.8.1"
-clams-python = "^0.5.2"
-mmif-python = "^0.4.2"
-pydantic = "^1.8.2"
-fastapi = "^0.94.0"
-loguru = "^0.6.0"
-rich = "^13.3.2"
-
-
-[tool.poetry.group.dev.dependencies]
-uvicorn = "^0.21.0"
-
-[tool.poetry.group.test]
-optional = true
-
-[tool.poetry.group.test.dependencies]
-pytest = "^7.2.2"
-httpx = "^0.23.3"
-pytest-cov = "^4.0.0"
-black = "^23.1.0"
-flake8 = "^6.0.0"
-
-[tool.poetry.group.docs]
-optional = true
-
-[tool.poetry.group.docs.dependencies]
-mkdocs = "^1.4.2"
-mkdocs-material = "^9.1.2"
-mkdocs-git-revision-date-localized-plugin = "^1.2.0"
-mkdocstrings = {extras = ["python"], version = "^0.20.0"}
-mike = "^1.1.2"
-
+license = { text = "MIT" }
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ['pdm-backend']
+build-backend = 'pdm.backend'
+
+[tool.ruff.flake8-quotes]
+inline-quotes = 'single'
+
+[tool.pdm]
+version = { source = 'file', path = 'fastclam/_version.py' }
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "uvicorn~=0.23",
+    "black~=23.7",
+    "ruff~=0.0",
+]
+test = [
+    "pytest~=7.4",
+    "pytest-cov~=4.1",
+    "httpx~=0.24",
+]

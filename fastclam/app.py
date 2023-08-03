@@ -4,21 +4,21 @@ from xml.etree import ElementTree
 from xml.etree.ElementTree import ParseError
 
 import requests
-from clams.source import generate_source_mmif
+from clams.source import generate_source_mmif_from_file
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import PlainTextResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
+from ._version import __version__
 from .log import log
 from .models import Inputs, Pipeline
-from .version import __VERSION__
 
 
 class MMIFException(HTTPException):
     pass
 
 
-app = FastAPI(title='FastCLAM')
+app = FastAPI(title='FastCLAM', version=__version__)
 
 
 @app.exception_handler(StarletteHTTPException)
@@ -29,14 +29,14 @@ async def http_exception_handler(request, exc):
 @app.get('/')
 def home() -> dict:
     """Return version info"""
-    return {'FastCLAM': __VERSION__}
+    return {'FastCLAM': __version__}
 
 
 @app.post('/source')
 def generate_source(files: Inputs) -> dict:
     """Generate a new source MMIF from multiple input files"""
     log.info(f'sourcing media {files.files}')
-    mmif = generate_source_mmif(files.files)
+    mmif = generate_source_mmif_from_file(files.files)
     json_value = loads(str(mmif))
     log.debug(f'sourced: {json_value}')
     return json_value
