@@ -10,3 +10,6 @@ Example:
         [localhost:8000/docs](http://localhost:8000/docs)
 
 """
+from ._version import __version__
+
+__all__ = ['__version__']
