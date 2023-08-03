@@ -76,7 +76,7 @@ def run_pipeline(pipeline: Pipeline) -> list | dict | str:
             log.debug(response.content)
             raise HTTPException(
                 status_code=response.status_code,
-                detail=f'Unsuccessful response from {app}: {response.status_code} - {response.content}',
+                detail=f'Unsuccessful response from {app}: {response.status_code} - {response.content}',  # noqa E501
             )
         content_type = response.headers.get('Content-Type')
         if 'application/json' in content_type:
@@ -95,7 +95,7 @@ def run_pipeline(pipeline: Pipeline) -> list | dict | str:
                 log.debug(response.content)
                 raise MMIFException(
                     status_code=499,
-                    detail=f'Failed to parse XML from {app}: {response.status_code} - {response.content}',
+                    detail=f'Failed to parse XML from {app}: {response.status_code} - {response.content}',  # noqa E501
                 )
 
     log.info(f'Ran {len(pipeline.files)} files through {len(pipeline.apps)} apps')
