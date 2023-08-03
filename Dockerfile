@@ -3,7 +3,7 @@ RUN pip install -U pip uvicorn
 
 WORKDIR /app
 
-COPY pyproject.toml poetry.lock README.md ./
+COPY pyproject.toml pdm.lock README.md ./
 COPY fastclam fastclam
 
 RUN pip install .
