@@ -4,7 +4,7 @@ from xml.etree import ElementTree
 from xml.etree.ElementTree import ParseError
 
 import requests
-from clams.source import generate_source_mmif_from_file
+from clams.mmif_utils.source import generate_source_mmif_from_file
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import PlainTextResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
